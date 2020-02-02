@@ -1,0 +1,18 @@
+.message-panel
+  .messages
+    = for message <- @messages do
+      .message-container
+        .message
+          / = link_to message, method: :delete, remote: true, class: "message__delete" do
+          /   | 🗑️
+          / = link_to edit_message_path(message), class: "message__delete" do
+          /   | ✏️
+          .message__author = message.username
+          .message__time = message.inserted_at
+          .message__content == message.content
+          / .message__edited
+          /   - if message.edited?
+          /     | edited #{l message.updated_at, format: :time}
+
+  .message-form
+    = render "form.html", assigns
