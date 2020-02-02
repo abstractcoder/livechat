@@ -1,4 +1,55 @@
 /* This file is for your main application css. */
 
-@import "./phoenix.css";
+@import "../node_modules/normalize-css/normalize.css";
 @import "../../deps/phoenix_live_view/assets/css/live_view.css";
+
+.message-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.messages {
+  flex-grow: 1;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.message {
+  position: relative;
+  margin: 10px;
+  padding: 10px;
+}
+
+.message__time {
+  display: inline-block;
+  font-size: 80%;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.message__delete {
+  color: red;
+  text-decoration: none;
+  margin-left: 10px;
+  float: right;
+}
+
+.message__edited {
+  font-size: 75%;
+  color: #888;
+  text-align: right;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.message__author {
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.message-form {
+  padding: 10px 15px;
+}

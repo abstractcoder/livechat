@@ -24,7 +24,9 @@ defmodule Livechat.Chat do
 
   """
   def list_messages do
-    Repo.all(Message)
+    Message
+    |> order_by(desc: :inserted_at)
+    |> Repo.all
   end
 
   @doc """
