@@ -10,9 +10,9 @@
           .message__author = message.username
           .message__time = message.inserted_at
           .message__content == message.content
-          / .message__edited
-          /   - if message.edited?
-          /     | edited #{l message.updated_at, format: :time}
+          .message__edited
+            = if edited? message do
+              | edited #{message.updated_at}
 
   .message-form
     = render "form.html", assigns
