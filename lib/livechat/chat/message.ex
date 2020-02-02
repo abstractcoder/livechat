@@ -13,6 +13,6 @@ defmodule Livechat.Chat.Message do
   def changeset(message, attrs) do
     message
     |> cast(attrs, [:content, :username])
-    |> validate_required([:content, :username])
+    |> validate_required([:content])
   end
 end

@@ -7,7 +7,7 @@
           /   | 🗑️
           / = link_to edit_message_path(message), class: "message__delete" do
           /   | ✏️
-          .message__author = message.username
+          .message__author = message.username || "Anonymous User"
           .message__time = message.inserted_at
           .message__content == message.content
           .message__edited
