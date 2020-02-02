@@ -18,6 +18,7 @@ defmodule LivechatWeb.Router do
     pipe_through :browser
 
     get "/", ChatController, :index
+    post "/", ChatController, :create
   end
 
   # Other scopes may use custom stacks.
