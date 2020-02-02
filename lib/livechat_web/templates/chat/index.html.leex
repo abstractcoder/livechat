@@ -1,0 +1,10 @@
+<ul id="messages">
+  <%= for msg <- @messages do %>
+    <li>
+      <strong><%= msg.username %></strong>
+      <%= msg.content %>
+    </li>
+  <% end %>
+</ul>
+
+<%= render "form.html", assigns %>
