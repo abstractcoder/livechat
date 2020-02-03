@@ -54,3 +54,7 @@
 .message-form {
   padding: 10px 15px;
 }
+
+trix-editor:not([contenteditable]) {
+  display: none;
+}

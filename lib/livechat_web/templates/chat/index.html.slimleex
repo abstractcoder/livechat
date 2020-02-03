@@ -9,7 +9,8 @@
           /   | ✏️
           .message__author = message.username || "Anonymous User"
           .message__time = message.inserted_at
-          .message__content == message.content
+          .message__content
+            .trix-content == message.content
           .message__edited
             = if edited? message do
               | edited #{message.updated_at}
