@@ -3,7 +3,7 @@ defmodule LivechatWeb.ChatView do
 
   alias Livechat.Chat.Message
 
-  def edited?(message) do
+  def edited?(%Message{} = message) do
     message.inserted_at != message.updated_at
   end
 end

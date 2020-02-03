@@ -9,7 +9,7 @@ defmodule LivechatWeb.ChatController do
 
   def create(conn, %{"message" => params}) do
     case Chat.create_message(params) do
-      {:ok, message} ->
+      {:ok, _message} ->
         conn
         |> redirect(to: Routes.chat_path(conn, :index))
 
@@ -18,6 +18,15 @@ defmodule LivechatWeb.ChatController do
         |> assign(:changeset, changeset)
         |> live_index
     end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    message = Chat.get_message!(id)
+
+    {:ok, _message} = Chat.delete_message(message)
+
+    conn
+    |> redirect(to: Routes.chat_path(conn, :index))
   end
 
   defp live_index(conn) do

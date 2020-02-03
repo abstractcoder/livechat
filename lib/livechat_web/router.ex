@@ -19,6 +19,7 @@ defmodule LivechatWeb.Router do
 
     get "/", ChatController, :index
     post "/", ChatController, :create
+    resources "/messages", ChatController, only: [:create, :update, :delete]
   end
 
   # Other scopes may use custom stacks.
