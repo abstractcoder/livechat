@@ -10,11 +10,8 @@
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view",
-<<<<<<< HEAD
-    "stimulus": "^1.1.1"
-=======
+    "stimulus": "^1.1.1",
     "trix": "^1.2.2"
->>>>>>> trix
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
