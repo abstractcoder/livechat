@@ -15,4 +15,8 @@
               | edited #{message.updated_at}
 
   .message-form
+    <div data-controller="hello">
+      <input type="text">
+      <button>Greet</button>
+    </div>
     = render "form.html", assigns
