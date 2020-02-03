@@ -2,7 +2,7 @@
   .messages
     = for message <- @messages do
       .message-container
-        .message
+        .message data-controller="hello"
           / = link_to message, method: :delete, remote: true, class: "message__delete" do
           /   | 🗑️
           / = link_to edit_message_path(message), class: "message__delete" do
@@ -16,8 +16,4 @@
               | edited #{message.updated_at}
 
   .message-form
-    <div data-controller="hello">
-      <input type="text">
-      <button>Greet</button>
-    </div>
     = render "form.html", assigns
