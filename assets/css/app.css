@@ -10,51 +10,76 @@
   height: 100vh;
 }
 
-.messages {
+.message-alert {
+  position: fixed;
+  top: 1em;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+}
+
+.message-alert--link {
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+  padding: 0.5em 4em;
+  border-radius: 0.5em;
+  text-decoration: none;
+}
+
+.message-scroll {
   flex-grow: 1;
   overflow-y: scroll;
+  position: relative;
+  padding: 1em 1.5em;
+}
+
+.messages {
   display: flex;
   flex-direction: column-reverse;
 }
 
 .message {
   position: relative;
-  margin: 10px;
-  padding: 10px;
+  padding: 0.5em 0;
 }
 
 .message__time {
   display: inline-block;
-  font-size: 80%;
+  font-size: 0.8em;
   color: #888;
-  margin-bottom: 5px;
+  margin-bottom: 0.5em;
 }
 
 .message__delete {
   color: red;
   text-decoration: none;
-  margin-left: 10px;
+  margin-left: 1em;
   float: right;
 }
 
 .message__edited {
-  font-size: 75%;
+  font-size: 0.8em;
   color: #888;
   text-align: right;
-  margin-top: 5px;
+  margin-top: 0.5em;
   display: inline-block;
 }
 
 .message__author {
   display: inline-block;
   font-weight: bold;
-  margin-right: 10px;
+  margin-right: 1em;
 }
 
 .message-form {
-  padding: 10px 15px;
+  padding: 0em 1.5em 1.5em 1.5em;
 }
 
 trix-editor:not([contenteditable]) {
+  display: none;
+}
+
+[hidden] {
   display: none;
 }

@@ -1,19 +1,22 @@
 .message-panel
-  .messages
-    = for message <- @messages do
-      .message-container
-        .message
-          = link to: "#", phx_click: "delete_message", phx_value_id: message.id, class: "message__delete" do
-            | 🗑️
-          / = link to: "#", phx_click: "edit_message", phx_value_id: message.id, class: "message__delete" do
-          /   | ✏️
-          .message__author = message.username || "Anonymous User"
-          .message__time = message.inserted_at
-          .message__content
-            .trix-content == message.content
-          .message__edited
-            = if edited? message do
-              | edited #{message.updated_at}
+  .message-scroll data-controller="messages"
+    .message-alert data-target="messages.messageAlert" hidden="true" phx-update="ignore"
+      a.message-alert--link href="#" data-action="messages#scrollToBottom" New Messages &#9660;
+    .messages data-target="messages.messages"
+      = for message <- @messages do
+        .message-container
+          .message
+            = link to: "#", phx_click: "delete_message", phx_value_id: message.id, class: "message__delete" do
+              | 🗑️
+            / = link to: "#", phx_click: "edit_message", phx_value_id: message.id, class: "message__delete" do
+            /   | ✏️
+            .message__author = message.username || "Anonymous User"
+            .message__time = message.inserted_at
+            .message__content
+              .trix-content == message.content
+            .message__edited
+              = if edited? message do
+                | edited #{message.updated_at}
 
   .message-form
     = render "form.html", assigns
