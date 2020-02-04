@@ -8,10 +8,10 @@ defmodule LivechatWeb.Endpoint do
   ]
 
   socket "/live", Phoenix.LiveView.Socket,
-    websocket: [connect_info: [session: @session_options]]
+    websocket: [timeout: 45_000, connect_info: [session: @session_options]]
 
   socket "/socket", LivechatWeb.UserSocket,
-    websocket: true,
+    websocket: [timeout: 45_000],
     longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
