@@ -1,9 +1,9 @@
 = form_for @changeset, "/", [phx_change: :validate, phx_submit: :send_message, autocomplete: :off], fn f -> 
 
-  = hidden_input f, :content
+  = hidden_input f, :content, phx_hook: "Trix"
 
   #trix-editor phx-update="ignore"
-    trix-editor.trix-content input="message_content"
+    trix-editor.trix-content input="message_content" autofocus=true
 
   div
     = submit "Send", phx_disable_with: "Loading"
