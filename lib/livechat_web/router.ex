@@ -17,9 +17,10 @@ defmodule LivechatWeb.Router do
   scope "/", LivechatWeb do
     pipe_through :browser
 
-    get "/", ChatController, :index
-    post "/", ChatController, :create
-    resources "/messages", ChatController, only: [:create, :update, :delete]
+    get "/", ChatController, :new
+
+    resources "/messages", ChatController
+    post "/messages/:id", ChatController, :delete
   end
 
   # Other scopes may use custom stacks.

@@ -1,9 +1,17 @@
-= form_for @changeset, "/", [phx_change: :validate, phx_submit: :send_message, autocomplete: :off], fn f -> 
-
+= f = form_for @changeset, @action, [phx_submit: "send_message", autocomplete: :off]
+  = hidden_input f, :id
   = hidden_input f, :content, phx_hook: "Trix"
 
+  noscript
+    = textarea f, :content, class: "message-form__fallback", id: "trix-fallback-content"
+    .message-form__fallback-padding
+
   #trix-editor phx-update="ignore"
-    trix-editor.trix-content input="message_content" autofocus=true
+    trix-editor.trix-content input="message_content"
 
   div
     = submit "Send", phx_disable_with: "Loading"
+    = if @message do
+      = link to: Routes.chat_path(@socket, :new), phx_click: "cancel_edit", onclick: "event.preventDefault()" do
+        | Cancel
+</form>

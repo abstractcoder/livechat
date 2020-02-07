@@ -27,21 +27,17 @@
   text-decoration: none;
 }
 
-.message-scroll {
+.messages {
   flex-grow: 1;
   overflow-y: scroll;
   position: relative;
-  padding: 1em 1.5em;
-}
-
-.messages {
   display: flex;
   flex-direction: column-reverse;
 }
 
 .message {
   position: relative;
-  padding: 0.5em 0;
+  padding: 1em 1.5em;
 }
 
 .message__time {
@@ -56,6 +52,9 @@
   text-decoration: none;
   margin-left: 1em;
   float: right;
+  background-color: transparent;
+  border: none;
+  padding: 0;
 }
 
 .message__edited {
@@ -73,7 +72,27 @@
 }
 
 .message-form {
+  position: relative;
   padding: 0em 1.5em 1.5em 1.5em;
+}
+
+.message-form__fallback {
+  position: absolute;
+  display: block;
+  left: 1.5em;
+  top: 3em;
+  height: 5em;
+  box-sizing: border-box;
+}
+
+.message-form__fallback-padding {
+  margin-bottom: 8em;
+}
+
+trix-editor {
+  position: relative;
+  z-index: 1;
+  background-color: white;
 }
 
 trix-editor:not([contenteditable]) {

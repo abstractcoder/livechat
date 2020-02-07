@@ -1,12 +1,12 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["messageAlert", "messages"]
+  static targets = ["messageAlert"]
 
   connect() {
     this.scrollToBottom(false)
 
-    this.element.addEventListener("scroll", () => this.scrollHandler())
+    this.element.addEventListener("scroll", this.scrollHandler.bind(this))
 
     const callback = (mutationsList, observer) => {
       for (let mutation of mutationsList) {
@@ -16,7 +16,7 @@ export default class extends Controller {
       }
     }
     this.observer = new MutationObserver(callback)
-    this.observer.observe(this.messagesTarget, { childList: true })
+    this.observer.observe(this.element, { childList: true })
   }
 
   disconnect() {

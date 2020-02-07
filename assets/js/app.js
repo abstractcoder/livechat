@@ -19,14 +19,24 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import LiveSocket from "phoenix_live_view"
 
+
+let setupTrix = function() {
+  const trix = document.querySelector(`trix-editor[input=${this.el.id}]`)
+  if (trix) {
+    trix.value = this.el.value
+    trix.focus()
+    trix.editor.setSelectedRange(trix.editor.getDocument().getLength() - 1)
+  }
+  for(let e of document.getElementsByTagName("noscript")) { e.remove() }
+}
+
 let Hooks = {}
 Hooks.Trix = {
+  mounted() {
+    setupTrix.call(this)
+  },
   updated() {
-    const trix = document.querySelector(`trix-editor[input=${this.el.id}]`)
-    if (trix) {
-      trix.value = this.el.value
-      trix.focus()
-    }
+    setupTrix.call(this)
   }
 }
 
@@ -34,5 +44,5 @@ let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("
 let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}, hooks: Hooks});
 liveSocket.connect()
 
-require("../node_modules/trix/dist/trix")
+require("trix/dist/trix")
 import "./controllers"
