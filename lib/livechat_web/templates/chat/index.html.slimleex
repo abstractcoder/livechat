@@ -3,20 +3,25 @@
     .message-alert data-target="messages.messageAlert" hidden="true" phx-update="ignore"
       a.message-alert--link href="#" data-action="messages#scrollToBottom" New Messages &#9660;
 
-    = for message <- @messages do
+    = for {message, i} <- Enum.with_index(@messages) do
       .message-container
         .message
-          = ff = form_for :foo, Routes.chat_path(@socket, :delete, message)
+          = form_for :foo, Routes.chat_path(@socket, :delete, message)
             button class="message__delete" phx-click="delete_message" phx-value-id=message.id onclick="event.preventDefault()" 🗑️
           </form>
           = link to: Routes.chat_path(@socket, :edit, message), class: "message__delete", phx_click: "edit_message", phx_value_id: message.id, onclick: "event.preventDefault()" do
             | ✏️
           .message__author = message.username || "Anonymous User"
-          .message__time = message.inserted_at
+          .message__time = format_time message.inserted_at
           .message__content
             .trix-content == message.content
           .message__edited
             = if edited? message do
-              | edited #{message.updated_at}
+              div title=format_datetime(message.updated_at) edited
+
+      = if day_changed? message, Enum.at(@messages, i+1) do
+        .message-date-divider
+          hr.message-date-divider--hr
+          .message-date-divider--label = format_date message.inserted_at
   .message-form
     = render "form.html", assigns
