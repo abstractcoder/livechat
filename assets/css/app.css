@@ -4,10 +4,14 @@
 @import "../../deps/phoenix_live_view/assets/css/live_view.css";
 @import "../node_modules/trix/dist/trix.css";
 
+html, body {
+  height: 100%;
+}
+
 .message-panel {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
 }
 
 .message-alert {

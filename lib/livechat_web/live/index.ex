@@ -1,5 +1,6 @@
 defmodule LivechatWeb.Live.Index do
-  use Phoenix.LiveView
+  use Phoenix.LiveView,
+    container: {:div, class: "message-panel"}
 
   alias Livechat.Chat
   alias Livechat.Chat.Message
