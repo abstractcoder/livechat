@@ -77,16 +77,10 @@
 }
 
 .message-form__fallback {
-  position: absolute;
   display: block;
-  left: 1.5em;
-  top: 3em;
-  height: 5em;
+  height: 6em;
+  width: 100%;
   box-sizing: border-box;
-}
-
-.message-form__fallback-padding {
-  margin-bottom: 8em;
 }
 
 .message-date-divider {

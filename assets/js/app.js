@@ -19,7 +19,6 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import LiveSocket from "phoenix_live_view"
 
-
 let setupTrix = function() {
   const trix = document.querySelector(`trix-editor[input=${this.el.id}]`)
   if (trix) {
@@ -27,6 +26,10 @@ let setupTrix = function() {
     trix.focus()
     trix.editor.setSelectedRange(trix.editor.getDocument().getLength() - 1)
   }
+
+  // Noscript tags are added to support javascript being disabled
+  // Make sure noscript tags are inside elements with phx-update="ignore"
+  // otherwise Live View will re-add them to the DOM on update
   for(let e of document.getElementsByTagName("noscript")) { e.remove() }
 }
 

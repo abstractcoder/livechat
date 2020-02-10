@@ -2,9 +2,9 @@
   = hidden_input f, :id
   = hidden_input f, :content, phx_hook: "Trix"
 
-  noscript
-    = textarea f, :content, class: "message-form__fallback", id: "trix-fallback-content"
-    .message-form__fallback-padding
+  div phx-update="ignore"
+    noscript
+      = textarea f, :content, class: "message-form__fallback", id: "trix-fallback-content", autofocus: true
 
   #trix-editor phx-update="ignore"
     trix-editor.trix-content input="message_content"
