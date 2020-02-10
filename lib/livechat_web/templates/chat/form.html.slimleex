@@ -9,9 +9,11 @@
   #trix-editor phx-update="ignore"
     trix-editor.trix-content input="message_content"
 
-  div
-    = submit "Send", phx_disable_with: "Loading"
+  .buttons
     = if @message do
       = link to: Routes.chat_path(@socket, :new), phx_click: "cancel_edit", onclick: "event.preventDefault()" do
-        | Cancel
+        | Cancel Edit
+    = submit phx_disable_with: "Loading", class: "button" do
+      = img_tag(Routes.static_path(@socket, "/images/mail.svg"), class: "icon")
+      |  #{if @message, do: "Update", else: "Send"} Message
 </form>

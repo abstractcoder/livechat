@@ -1,16 +1,21 @@
 .message-panel
   .messages data-controller="messages"
     .message-alert data-target="messages.messageAlert" hidden="true" phx-update="ignore"
-      a.message-alert--link href="#" data-action="messages#scrollToBottom" New Messages &#9660;
+      a.button href="#" data-action="messages#scrollToBottom"
+        = img_tag(Routes.static_path(@socket, "/images/chevron-down.svg"), class: "icon")
+        | &nbsp;New Messages&nbsp;
+        = img_tag(Routes.static_path(@socket, "/images/chevron-down.svg"), class: "icon")
 
     = for {message, i} <- Enum.with_index(@messages) do
       .message-container
         .message
-          = form_for :foo, Routes.chat_path(@socket, :delete, message)
-            button class="message__delete" phx-click="delete_message" phx-value-id=message.id onclick="event.preventDefault()" 🗑️
-          </form>
-          = link to: Routes.chat_path(@socket, :edit, message), class: "message__delete", phx_click: "edit_message", phx_value_id: message.id, onclick: "event.preventDefault()" do
-            | ✏️
+          .message__buttons
+            = link to: Routes.chat_path(@socket, :edit, message), class: "message__button", title: "Edit Message", phx_click: "edit_message", phx_value_id: message.id, onclick: "event.preventDefault()" do
+              = img_tag(Routes.static_path(@socket, "/images/edit.svg"), class: "icon")
+            = form_for :foo, Routes.chat_path(@socket, :delete, message)
+              button class="message__button" title="Delete Message" phx-click="delete_message" phx-value-id=message.id onclick="event.preventDefault()"
+                = img_tag(Routes.static_path(@socket, "/images/bin.svg"), class: "icon")
+            </form>
           .message__author = message.username || "Anonymous User"
           .message__time = format_time message.inserted_at
           .message__content
