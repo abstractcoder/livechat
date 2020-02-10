@@ -23,7 +23,6 @@ let setupTrix = function() {
   const trix = document.querySelector(`trix-editor[input=${this.el.id}]`)
   if (trix) {
     trix.value = this.el.value
-    trix.focus()
     trix.editor.setSelectedRange(trix.editor.getDocument().getLength() - 1)
   }
 

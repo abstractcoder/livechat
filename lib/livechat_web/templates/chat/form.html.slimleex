@@ -4,7 +4,7 @@
 
   div phx-update="ignore"
     noscript
-      = textarea f, :content, class: "message-form__fallback", id: "trix-fallback-content", autofocus: true
+      = textarea f, :content, class: "message-form__fallback", id: "trix-fallback-content"
 
   #trix-editor phx-update="ignore"
     trix-editor.trix-content input="message_content"
