@@ -1,9 +1,10 @@
 .messages data-controller="messages"
-  .message-alert data-target="messages.messageAlert" hidden="true" phx-update="ignore"
-    a.button href="#" data-action="messages#scrollToBottom"
-      = img_tag(Routes.static_path(@socket, "/images/chevron-down.svg"), class: "icon")
-      | &nbsp;New Messages&nbsp;
-      = img_tag(Routes.static_path(@socket, "/images/chevron-down.svg"), class: "icon")
+  div phx-update="ignore"
+    .message-alert data-target="messages.messageAlert" hidden="true"
+      a.button href="#" data-action="messages#scrollToBottom"
+        = img_tag(Routes.static_path(@socket, "/images/chevron-down.svg"), class: "icon")
+        | &nbsp;New Messages&nbsp;
+        = img_tag(Routes.static_path(@socket, "/images/chevron-down.svg"), class: "icon")
 
   = for {message, i} <- Enum.with_index(@messages) do
     .message-container

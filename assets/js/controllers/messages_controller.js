@@ -8,20 +8,24 @@ export default class extends Controller {
 
     this.element.addEventListener("scroll", this.scrollHandler.bind(this))
 
-    const callback = (mutationsList, observer) => {
-      for (let mutation of mutationsList) {
-        for (let node of mutation.addedNodes) {
-          this.showMessage(node)
-        }
-      }
-    }
-    this.observer = new MutationObserver(callback)
+    this.observer = new MutationObserver(this.mutationCallback.bind(this))
     this.observer.observe(this.element, { childList: true })
   }
 
   disconnect() {
     this.element.removeEventListener("scroll", () => this.scrollHandler())
     this.observer.disconnect()
+  }
+
+  mutationCallback(mutationsList, _observer) {
+    for (let mutation of mutationsList) {
+      if (mutation.addedNodes.length > 0) {
+        this.showMessage()
+      }
+      if (mutation.removedNodes.length > 0) {
+        this.resetScrollPosition()
+      }
+    }
   }
 
   showMessageAlert() {
@@ -33,6 +37,9 @@ export default class extends Controller {
   }
 
   scrollHandler() {
+    this.scrollTop = this.element.scrollTop
+    this.scrollHeight = this.element.scrollHeight
+
     if (this.element.scrollHeight - this.element.clientHeight - this.element.scrollTop < 10) {
       this.hideMessageAlert() 
       this.atBottom = true
@@ -54,14 +61,19 @@ export default class extends Controller {
     this.atBottom = true
   }
 
-  showMessage(node) {
+  showMessage() {
     if (this.atBottom) {
       this.scrollToBottom()
     }
     else {
       this.showMessageAlert()
-      this.element.scrollBy(0, -node.clientHeight)
+      this.element.scrollTo(0, this.scrollTop)
     }
+  }
+
+  resetScrollPosition() {
+    const adjustment = this.scrollHeight - this.element.scrollHeight
+    this.element.scrollBy(0, adjustment)
   }
 
 }

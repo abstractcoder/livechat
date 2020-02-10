@@ -16,7 +16,7 @@ html, body {
 
 .message-alert {
   position: fixed;
-  top: 1em;
+  top: 1.5em;
   text-align: center;
   width: 100%;
   z-index: 1;
