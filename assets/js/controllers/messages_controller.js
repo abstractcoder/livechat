@@ -33,7 +33,7 @@ export default class extends Controller {
   }
 
   scrollHandler() {
-    if (this.element.scrollHeight - this.element.offsetHeight - this.element.scrollTop < 10) {
+    if (this.element.scrollHeight - this.element.clientHeight - this.element.scrollTop < 10) {
       this.hideMessageAlert() 
       this.atBottom = true
     }

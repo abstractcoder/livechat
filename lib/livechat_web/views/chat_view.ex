@@ -9,7 +9,7 @@ defmodule LivechatWeb.ChatView do
     message.inserted_at != message.updated_at
   end
 
-  def day_changed?(new_date, nil), do: true
+  def day_changed?(_new_date, nil), do: true
 
   def day_changed?(new_message, old_message) do
     new_message.inserted_at.day != old_message.inserted_at.day
