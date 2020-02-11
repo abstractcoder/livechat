@@ -16,6 +16,9 @@ import "phoenix_html"
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 
+import smoothscroll from "smoothscroll-polyfill"
+smoothscroll.polyfill()
+
 import {Socket} from "phoenix"
 import LiveSocket from "phoenix_live_view"
 
