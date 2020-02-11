@@ -17,9 +17,15 @@ defmodule LivechatWeb.Router do
   scope "/", LivechatWeb do
     pipe_through :browser
 
-    get "/", ChatController, :new
+    anchor = "#message-anchor"
 
-    resources "/messages", ChatController
+    get "/", ChatController, :redirect_to_new
+
+    # These routes exist so that the Route helpers includes scrolling anchor
+    get "/messages/new#{anchor}", ChatController, :new
+    get "/messages/:id/edit#{anchor}", ChatController, :edit
+
+    resources "/messages", ChatController, only: [:new, :create, :edit, :update, :delete]
     post "/messages/:id", ChatController, :delete
   end
 

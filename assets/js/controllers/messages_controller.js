@@ -22,9 +22,6 @@ export default class extends Controller {
       if (mutation.addedNodes.length > 0) {
         this.showMessage()
       }
-      if (mutation.removedNodes.length > 0) {
-        this.resetScrollPosition()
-      }
     }
   }
 
@@ -37,10 +34,10 @@ export default class extends Controller {
   }
 
   scrollHandler() {
-    this.scrollTop = this.element.scrollTop
-    this.scrollHeight = this.element.scrollHeight
+    // Assume at bottom if within the cushion
+    const bottomCushion = 20
 
-    if (this.element.scrollHeight - this.element.clientHeight - this.element.scrollTop < 10) {
+    if (this.element.scrollHeight - this.element.clientHeight - this.element.scrollTop < bottomCushion) {
       this.hideMessageAlert() 
       this.atBottom = true
     }
@@ -67,13 +64,6 @@ export default class extends Controller {
     }
     else {
       this.showMessageAlert()
-      this.element.scrollTo(0, this.scrollTop)
     }
   }
-
-  resetScrollPosition() {
-    const adjustment = this.scrollHeight - this.element.scrollHeight
-    this.element.scrollBy(0, adjustment)
-  }
-
 }

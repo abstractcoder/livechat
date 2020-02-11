@@ -3,8 +3,8 @@ defmodule LivechatWeb.ChatController do
 
   alias Livechat.Chat
 
-  def index(conn, _params) do
-    live_index(conn)
+  def redirect_to_new(conn, _params) do
+    redirect(conn, to: Routes.chat_path(conn, :new))
   end
 
   def new(conn, _params) do

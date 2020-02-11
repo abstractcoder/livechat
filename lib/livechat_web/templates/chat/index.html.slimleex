@@ -7,6 +7,11 @@
         = img_tag(Routes.static_path(@socket, "/images/chevron-down.svg"), class: "icon")
 
   = for {message, i} <- Enum.with_index(@messages) do
+    = if day_changed? message, Enum.at(@messages, i-1) do
+      .message-date-divider
+        hr.message-date-divider--hr
+        .message-date-divider--label = format_date message.inserted_at
+
     .message-container
       .message
         .message__buttons
@@ -24,9 +29,8 @@
           = if edited? message do
             div title=format_datetime(message.updated_at) edited
 
-    = if day_changed? message, Enum.at(@messages, i+1) do
-      .message-date-divider
-        hr.message-date-divider--hr
-        .message-date-divider--label = format_date message.inserted_at
+  #message-anchor
+
+
 .message-form
   = render "form.html", assigns
