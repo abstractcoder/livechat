@@ -1,7 +1,7 @@
 .messages data-controller="messages"
   div phx-update="ignore"
     .message-alert data-target="messages.messageAlert" hidden="true"
-      a.button href="#" data-action="messages#scrollToBottom"
+      a.button href="#message-anchor" data-action="messages#scrollToBottom" onclick="event.preventDefault()"
         = img_tag(Routes.static_path(@socket, "/images/chevron-down.svg"), class: "icon")
         | &nbsp;New Messages&nbsp;
         = img_tag(Routes.static_path(@socket, "/images/chevron-down.svg"), class: "icon")
