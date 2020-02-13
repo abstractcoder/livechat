@@ -13,7 +13,7 @@
         .message-date-divider--label = format_date message.inserted_at
 
     .message-container
-      .message
+      .message onclick="this.hover()"
         .message__buttons
           = link to: Routes.chat_path(@socket, :edit, message), class: "message__button", title: "Edit Message", phx_click: "edit_message", phx_value_id: message.id, onclick: "event.preventDefault()" do
             = img_tag(Routes.static_path(@socket, "/images/edit.svg"), class: "icon")
