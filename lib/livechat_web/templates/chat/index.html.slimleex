@@ -1,6 +1,6 @@
 .messages data-controller="messages"
   div phx-update="ignore"
-    .message-alert data-target="messages.messageAlert" hidden="true"
+    .message-alert data-messages-target="messageAlert" hidden="true"
       a.button href="#message-anchor" data-action="messages#scrollToBottom" onclick="event.preventDefault()"
         = img_tag(Routes.static_path(@socket, "/images/chevron-down.svg"), class: "icon")
         | &nbsp;New Messages&nbsp;
@@ -13,7 +13,8 @@
         .message-date-divider--label = format_date message.inserted_at
 
     .message-container
-      .message onclick="this.hover()"
+      // Adding a non-empty onclick handler enables tap to hover in mobile safari
+      .message onclick="void(0)"
         .message__buttons
           = link to: Routes.chat_path(@socket, :edit, message), class: "message__button", title: "Edit Message", phx_click: "edit_message", phx_value_id: message.id, onclick: "event.preventDefault()" do
             = img_tag(Routes.static_path(@socket, "/images/edit.svg"), class: "icon")
