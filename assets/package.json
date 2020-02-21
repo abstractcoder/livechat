@@ -11,7 +11,7 @@
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view",
     "smoothscroll-polyfill": "^0.4.4",
-    "stimulus": "^1.1.1",
+    "stimulus": "https://github.com/stimulusjs/dev-builds/archive/b8cc8c4/stimulus.tar.gz",
     "trix": "^1.2.2"
   },
   "devDependencies": {
